@@ -43,7 +43,7 @@ As rotas principais são:
 
 Método	URL	Descrição
 
-(OBSERVAÇÃO: o método de consultar o cliente utiliza o post ao invés de get propositalmente pois o get naturalmente não pode usar o body somente o req.params, a consulta é mais fácil via body.)
+(OBSERVAÇÃO: o método de consulta usa POST ao invés de GET propositalmente para facilitar o uso de filtros no body.)
 
 1-POST	http://localhost:3000/api/customer	 --Cadastrar um novo cliente
 2-POST	http://localhost:3000/api/customer/search	 --Buscar clientes com filtros
@@ -56,7 +56,7 @@ No método (1) teste com a URL indicada acima e no corpo da requisição JSON us
   "nome": "João Pereira",
   "data_nascimento": "1985-07-20",
   "rg": "MG1234567",
-  "cpf": "12345678901",
+  "cpf": "123.456.789-01",
   "telefone": "31999998888",
   "endereco": "Av. Brasil, 1000",
   "numero": "1000",
@@ -79,7 +79,7 @@ EX:http://localhost:3000/api/customer/12345678901
   "telefone": "31988888888",
   "cidade": "Contagem",
   "uf": "MG",
-  "novoCpf": "09876543210"
+  "novoCpf": "098.765.432-10"
 }
 
 No método (4)  teste com a URL indicada acima e no corpo da requisição JSON use:
