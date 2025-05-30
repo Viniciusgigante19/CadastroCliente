@@ -1,46 +1,87 @@
 # API RESTful de Cadastro de Clientes
 
-Este projeto é uma API para cadastro, busca, atualização e remoção de clientes. Ele utiliza **Node.js**, **Express**, **Sequelize** e um banco de dados **PostgreSQL** rodando via **Docker Compose**.
+Este projeto oferece uma API para gerenciar clientes (cadastrar, buscar, atualizar e deletar).
 
-## 🚀 Tecnologias Usadas
+---
 
-- Node.js
-- Express
-- Sequelize
-- PostgreSQL
-- Docker e Docker Compose
+## Como usar esta API - Passo a passo para iniciantes
 
-## 📦 Pré-requisitos
+### O que você precisa instalar antes
 
-- [Docker](https://www.docker.com/)
-- [Docker Compose](https://docs.docker.com/compose/)
-- [Git](https://git-scm.com/)
+- [Git Bash](https://git-scm.com/downloads)
+- [Docker Desktop](https://www.docker.com/products/docker-desktop)
 
-## 🔧 Como rodar o projeto
+---
 
-### 1. Clone o repositório
+### Passo 1: Abrir o Git Bash
+
+No Windows, clique no menu Iniciar e digite **Git Bash**, depois abra o programa.
+
+---
+
+### Passo 2: Baixar o projeto para o seu computador
+
+No Git Bash, copie e cole o comando abaixo e aperte Enter:
 
 ```bash
 git clone https://github.com/Viniciusgigante19/CadastroCliente.git
-2. Acesse a pasta do projeto
-bash
-Copiar
-Editar
-cd CadastroCliente
-3. Suba os containers com Docker Compose
-bash
-Copiar
-Editar
-docker-compose up --build
-Isso iniciará o backend e o banco de dados PostgreSQL com os volumes e ports definidos.
 
-📬 Rotas da API
-POST /api/customer/search → Buscar clientes por filtros
+Passo 3: Entrar na pasta do projeto
+Ainda no Git Bash, digite:
 
-POST /api/customer → Cadastrar cliente
+(bash)
+-cd CadastroCliente
 
-PUT /api/customer/:cpf → Atualizar cliente pelo CPF
+Passo 4: Rodar a API com Docker Compose
+Com o Docker Desktop aberto (ele precisa estar rodando), execute no Git Bash:
+-docker-compose up --build
 
-DELETE /api/customer/:cpf → Deletar cliente pelo CPF
+Testar a API
+Agora a API está rodando na porta 3000 do seu computador. Você pode usar ferramentas como Insomnia ou Postman para enviar requisições.
 
-🗂️ Estrutura de Pastas
+As rotas principais são:
+
+Método	URL	Descrição
+
+(OBSERVAÇÃO: o método de consultar o cliente utiliza o post ao invés de get propositalmente pois o get naturalmente não pode usar o body somente o req.params, a consulta é mais fácil via body.)
+
+1-POST	http://localhost:3000/api/customer	 --Cadastrar um novo cliente
+2-POST	http://localhost:3000/api/customer/search	 --Buscar clientes com filtros
+3-PUT	http://localhost:3000/api/customer/:cpf	 --Atualizar cliente pelo CPF
+4-DELETE	http://localhost:3000/api/customer/:cpf	 --Deletar cliente pelo CPF
+
+No método (1) teste com a URL indicada acima e no corpo da requisição JSON use:
+
+{
+  "nome": "João Pereira",
+  "data_nascimento": "1985-07-20",
+  "rg": "MG1234567",
+  "cpf": "12345678901",
+  "telefone": "31999998888",
+  "endereco": "Av. Brasil, 1000",
+  "numero": "1000",
+  "cidade": "Belo Horizonte",
+  "uf": "MG",
+  "cep": "30140000"
+}
+
+No método (2) teste com a URL indicada acima e no corpo da requisição JSON use:
+{
+  "nome": "João",
+  "cidade": "Belo Horizonte"
+}
+
+No método (3)  teste com a URL indicada acima e no corpo da requisição JSON use:
+Use a URL indicada acrescida do CPF da pessoa que vai ser atualizada!
+EX:http://localhost:3000/api/customer/12345678901
+{
+  "nome": "Maria Souza Silva",
+  "telefone": "31988888888",
+  "cidade": "Contagem",
+  "uf": "MG",
+  "novoCpf": "09876543210"
+}
+
+No método (4)  teste com a URL indicada acima e no corpo da requisição JSON use:
+Use a mesma URL acrescida do cpf de quem vá ser deletado!
+http://localhost:3000/api/customer/12345678901
