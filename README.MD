@@ -57,7 +57,7 @@ No método (1) teste com a URL indicada acima e no corpo da requisição JSON us
   "data_nascimento": "1985-07-20",
   "rg": "MG1234567",
   "cpf": "123.456.789-01",
-  "telefone": "31999998888",
+  "telefone": "(11) 9123-4567",
   "endereco": "Av. Brasil, 1000",
   "numero": "1000",
   "cidade": "Belo Horizonte",
@@ -76,7 +76,7 @@ Use a URL indicada acrescida do CPF da pessoa que vai ser atualizada!
 EX:http://localhost:3000/api/customer/12345678901
 {
   "nome": "Maria Souza Silva",
-  "telefone": "31988888888",
+  "telefone": "(11) 9123-4567",
   "cidade": "Contagem",
   "uf": "MG",
   "novoCpf": "098.765.432-10"
